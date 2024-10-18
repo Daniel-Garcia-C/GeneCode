@@ -1,0 +1,134 @@
+Información de equipos {
+  Equipo {
+    shape: class
+
+    id: int
+    nombre: string
+    pais: string
+    entrenador: string
+  }
+
+  Jugador {
+    shape: class
+
+    id: int
+    nombre: string
+    apellido: string
+    fecha_de_nacimiento: date
+    posicion: string
+    equipo_id: int
+  }
+}
+
+Información de estadio {
+  Estadio {
+    shape: class
+
+    id: int
+    nombre: string
+    capacidad: int
+    ciudad: string
+  }
+
+  Seccion {
+    shape: class
+
+    id: int
+    nombre: string
+    descripcion: string
+    tipo_de_boleto_id: string
+    estadio_id: int
+  }
+
+  Asiento {
+      shape: class
+  
+      id: int
+      estadio_id: int
+      seccion_id: int
+      fila: int
+      columna: int
+      tipo_de_asiento_id: string
+  }
+
+  Estadio -> Seccion {
+    source-arrowhead: 1
+    target-arrowhead: *
+  }
+
+  Seccion -> Asiento {
+    source-arrowhead: 1
+    target-arrowhead: *
+  }
+
+  Estadio -> Asiento {
+    source-arrowhead: 1
+    target-arrowhead: *
+  }
+}
+
+Información de estadio.Seccion.estadio_id <- Información de partidos.Tipo_de_boleto {
+  source-arrowhead: *
+  target-arrowhead: 1
+}
+
+Información de partidos {
+  Partido {
+    shape: class
+  
+    id: int
+    fecha: date
+    hora: time
+    estadio_id: int 
+    equipo_local_id: int
+    equipo_visitante_id: int
+  }
+
+  Boleto {
+    shape: class
+
+    id: int
+    asiento_id: int
+    partido_id: int
+    tipo_de_boleto_id: int
+  }
+
+  Tipo_de_boleto {
+    shape: class
+
+    id: int
+    nombre: string
+    descripcion: string
+    precio: int
+  }
+
+  Partido -> Boleto {
+    source-arrowhead: 1
+    target-arrowhead: *
+  }
+
+  Tipo_de_boleto -> Boleto {
+    source-arrowhead: *
+    target-arrowhead: 1
+  }
+}
+
+Información de partidos.Partido.equipo_local_id <- Información de equipos.Equipo {
+  source-arrowhead: *
+  target-arrowhead: 1
+}
+
+Información de partidos.Partido.equipo_visitante_id <- Información de equipos.Equipo {
+  source-arrowhead: *
+  target-arrowhead: 1
+}
+
+Información de partidos.Partido.estadio_id <- Información de estadio.Estadio {
+  source-arrowhead: *
+  target-arrowhead: 1
+}
+
+Información de partidos.Boleto -> Información de estadio.Asiento {
+  source-arrowhead: 1
+  target-arrowhead: 1
+}
