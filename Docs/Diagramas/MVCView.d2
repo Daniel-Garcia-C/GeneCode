@@ -1,0 +1,91 @@
+Controlador {
+  ControladorAccederUsuario {
+    shape: "class"
+  }
+
+  ControladorEquipos {
+    shape: "class"
+  }
+
+  ControladorVenderBoletos {
+    shape: "class"
+  }
+
+  ControladorPartidos {
+    shape: "class"
+  }
+
+  ControladorInicio {
+    shape: "class"
+  }
+}
+
+Vista {
+  VistaAccederUsuario {
+    shape: "class"
+  }
+
+  VistaEquipo {
+    shape: "class"
+  }
+
+  VistaVenderBoletos {
+    shape: "class"
+  }
+
+  VistaPartidos {
+    shape: "class"
+  }
+
+  VistaInicio {
+    shape: "class"
+  }
+}
+
+Modelo {
+  ModeloUsuario {
+    shape: "class"
+
+    - nombreUsuario: String
+    - contraseñaUsuario: String
+
+    calcularGananciasTotales(): Double
+  }
+
+  ModeloEquipos {
+    shape: "class"
+
+    - nombreEquipo: String
+    - logoEquipo: String
+
+    agregarEquipo(): void
+    eliminarEquipo(): void
+    buscarEquipo(): void
+  }
+
+  ModeloPartidos {
+    shape: "class"
+
+    - EquiposEnfrentados: String\[\]
+    - lugar: String
+    - fecha: LocalTime
+    - hora: LocalTime
+  }
+
+  ModeloBoletos {
+    shape: "class"
+
+    - nombre: String
+    - apellido: String
+    - numeroAsiento: String
+    - seccionAsiento: String
+    - costo: Double
+
+    + nuevoBoleto(): void
+    + eliminarBoleto(): void
+    + buscarBoleto(): void
+  }
+
+  ModeloPartidos -- ModeloEquipos
+  ModeloBoletos -> ModeloPartidos
+}
