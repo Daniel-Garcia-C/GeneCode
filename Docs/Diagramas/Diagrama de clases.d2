@@ -150,3 +150,91 @@ Vista {
   VistaPrincipal -> VistaEquipo
   VistaPrincipal -> VistaPartido
 }
+
+mysqlImplements {
+  Conexion {
+    shape: class
+
+    - jdbc: Connection
+    - driver: String
+    - user: String
+    - password: String
+    - url: String
+    - db: String
+
+    Conexion()
+    conectar(): Connection
+    desconectar(): void
+  }
+
+  DAOException {
+    shape: class
+
+    DAOException(message\: String)
+    DAOException(message\: String, cause\: Throwable)
+    DAOException(cause\: Throwable)
+  }
+
+  MySQLEquipoDAO {
+    shape: class
+
+    - jdbc: Conexion
+    - INSERT: String
+    - DELETE: String
+    - UPDATE: String
+    - GETALL: String
+    - GETONE: String
+
+    agregar(e\: Equipo): void
+    eliminar(e\: Equipo): void
+    modificar(e\: Equipo): void
+    obtener(e\: Equipo): Equipo
+    obtenerTodos(): List<Equipo>
+  }
+
+  MySELDAOManager {
+    shape: class
+
+    - equipoDAO: MySQLEquipoDAO
+    - partidoDAO: MySQLPartidoDAO
+    - boletoDAO: MySQLBoletoDAO
+
+    getEquipoDAO(): EquipoDAO
+    getPartidoDAO(): PartidoDAO
+    getBoletoDAO(): BoletoDAO
+  }
+
+  MySQLPartidoDAO {
+    shape: class
+
+    - jdbc: Conexion
+    - INSERT: String
+    - DELETE: String
+    - UPDATE: String
+    - GETALL: String
+    - GETONE: String
+
+    agregar(e\: Partido): void
+    eliminar(e\: Partido): void
+    modificar(e\: Partido): void
+    obtener(e\: Partido): Partido
+    obtenerTodos(): List<Partido>
+  }
+
+  MySQLBoletoDAO {
+    shape: class
+
+    - jdbc: Conexion
+    - INSERT: String
+    - DELETE: String
+    - UPDATE: String
+    - GETALL: String
+    - GETONE: String
+
+    agregar(e\: Boleto): void
+    eliminar(e\: Boleto): void
+    modificar(e\: Boleto): void
+    obtener(e\: Boleto): Boleto
+    obtenerTodos(): List<Boleto>
+  }
+}
