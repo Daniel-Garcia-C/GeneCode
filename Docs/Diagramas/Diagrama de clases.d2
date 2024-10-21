@@ -34,7 +34,11 @@ ModelosDAO {
   BoletoDAO -> DAO
 }
 
-Controladores {
+ModelosDAO.EquipoDAO -> Modelos.Equipo
+ModelosDAO.PartidoDAO -> Modelos.Partido
+ModelosDAO.BoletoDAO -> Modelos.Boleto
+
+Modelos {
   Boleto {
     shape: class
 
@@ -151,6 +155,15 @@ Vista {
   VistaPrincipal -> VistaPartido
 }
 
+Vista.VistaEquipo -> Modelos.Equipo
+Vista.VistaEquipo -> ModelosDAO.DAOManager
+
+Vista.VistaPartido -> Modelos.Partido
+Vista.VistaPartido -> ModelosDAO.DAOManager
+
+Vista.VistaInicio -> Modelos.Boleto
+Vista.VistaInicio -> ModelosDAO.DAOManager
+
 mysqlImplements {
   Conexion {
     shape: class
@@ -236,5 +249,27 @@ mysqlImplements {
     modificar(e\: Boleto): void
     obtener(e\: Boleto): Boleto
     obtenerTodos(): List<Boleto>
+  }
+}
+
+mysqlImplements.MySELDAOManager -> ModelosDAO.DAOManager {
+  style: {
+    stroke-dash: 8
+  }
+}
+
+mysqlImplements.MySQLEquipoDAO -> ModelosDAO.EquipoDAO {
+  style: {
+    stroke-dash: 8
+  }
+}
+mysqlImplements.MySQLPartidoDAO -> ModelosDAO.PartidoDAO {
+  style: {
+    stroke-dash: 8
+  }
+}
+mysqlImplements.MySQLBoletoDAO -> ModelosDAO.BoletoDAO {
+  style: {
+    stroke-dash: 8
   }
 }
