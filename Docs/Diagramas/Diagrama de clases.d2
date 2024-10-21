@@ -1,0 +1,152 @@
+ModelosDAO {
+  DAO: DAO \n\<\<interface\>\>{
+    shape: class
+
+    agregar(e\: Objeto): void
+    eliminar(e\: Objeto): void
+    modificar(e\: Objeto): void
+    obtener(e\: Objeto): void
+    obtenerTodos(): List<Objeto>
+  }
+
+  DAOManager: DAOManager \n\<\<interface\>\>{
+    shape: class
+
+    getEquipoDAO(): EquipoDAO
+    getPartidoDAO(): PartidoDAO
+    getBoletoDAO(): BoletoDAO
+  }
+
+  EquipoDAO: EquipoDAO \n\<\<interface\>\>{
+    shape: class
+  }
+
+  PartidoDAO: PartidoDAO \n\<\<interface\>\>{
+    shape: class
+  }
+
+  BoletoDAO: BoletoDAO \n\<\<interface\>\>{
+    shape: class
+  }
+
+  EquipoDAO -> DAO
+  PartidoDAO -> DAO
+  BoletoDAO -> DAO
+}
+
+Controladores {
+  Boleto {
+    shape: class
+
+    - ClvBoleto: int
+    - ClvPartido: int
+
+    Boleto(Clvboleto\: int, ClvPartido\: int)
+    getClvBoleto(): int 
+    getClvBoletos(): int
+    setClvBoleto(ClvBoleto\: int): void
+    setClvPartido(ClvPartido\: int): void
+    toString(): String
+  }
+  
+  Equipo {
+    shape: class
+
+    - ClvEquipo: int
+    - Nombre: String
+    - Ciudad: String
+    - Estadio: String
+
+    Equipo(claveEquipo\: int, Nombre\: String)
+    getClaveEquipo(): int
+    getNombreEquipo(): String
+    setClaveEquipo(ClvEquipo\: int): void
+    setNombreEquipo(Nombre\: String): void
+    toString(): String
+  }
+
+  Partido {
+    shape: class
+
+    - ClvPartido: int
+    - Fecha: Date
+    - Hora: Time
+    - ClvEstadio: int
+    - ClvEquipoLocal: int
+    - ClvEquipoVisitante: int
+
+    Partido(ClvPartido\: int, lugar\: String, Equipo_Uno\: int, Equipo_Dos\: int, hora\: int, dia\: int, mes\: int)  
+    getClvPartido(): int
+    getClvEquipo_Uno(): int
+    getClvEquipo_Dos(): int
+    getLugar(): String
+    getHora(): int
+    getDia(): int
+    getMes(): int
+
+    setClvPartido(ClvPartido\: int): void
+    setClvEquipo_Uno(Equipo_Uno\: int): void
+    setClvEquipo_Dos(Equipo_Dos\: int): void
+    setLugar(lugar\: String): void
+    setHora(hora\: int): void
+    setDia(dia\: int): void
+    setMes(mes\: int): void
+
+    toString(): String
+  }
+}
+
+Vista {
+  VistaInicio {
+    shape: class
+
+    - initComponents(): void
+
+    Inicio()
+    btn_GenerarBoletoActionPerformed(evt\: ActionEvent): void
+  }
+
+  VistaEquipo {
+    shape: class
+
+    - initComponents(): void
+
+    Equipo()
+    btn_AgregarEquipoActionPerformed(evt\: ActionEvent): void
+    getBtn_AgregarEquipo(): JButton
+    getInput_ClaveEquipo(): JTextField
+    getInput_Nequipo(): JTextField
+    btn_AgregarEquipoActionPerformed(evt\: ActionEvent): void
+  }
+
+  VistaPartido {
+    shape: class
+
+    - initComponents(): void
+
+    Partido()
+    btn_crearPartidoActionPerformed(evt\: ActionEvent): void
+    setMes(): void
+    setDia(): void
+    setHora(): void
+    setEquipo_Uno(): void
+    setEquipo_Dos(): void
+  }
+
+  VistaPrincipal {
+    shape: class
+
+    - initComponents(): void
+
+    VistaPrincipal()
+    btn_EquiposActionPerformed(evt\: ActionEvent): void
+    btn_PartidosActionPerformed(evt\: ActionEvent): void
+    btn_inicioActionPerformed(evt\: ActionEvent): void
+    showPanel(): void
+    main(args\[\]\: String): void
+  }
+
+  VistaPrincipal -> VistaInicio
+  VistaPrincipal -> VistaEquipo
+  VistaPrincipal -> VistaPartido
+}
