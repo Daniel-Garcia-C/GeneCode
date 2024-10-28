@@ -76,3 +76,64 @@ Esta carpeta contiene las implementaciones concretas de las interfaces de acceso
 
 ### 2.3 Modelo - Vista - Controlador
 ![Diagrama de clases de beisboletos](/Docs/Diagramas/MVCView.svg)
+
+## 3. Vista de implementación
+
+### 3.1 Descripción de los componentes
+
+El Diagrama de Componentes muestra cómo los diferentes módulos y componentes del sistema se organizan e interactúan. Basándonos en la estructura de carpetas y librerías, la organización sería la siguiente: 
+
+#### Componentes principales: 
+
+#### Componente "Vista" 
+Contiene los archivos y clases que forman la interfaz gráfica del sistema. 
+
+- **Clases:** VistaInicio, VistaEquipo, VistaPrincipal, VistaPartido 
+
+- **Librerías asociadas:** AbsoluteLayout-RELEASE150.jar, NefAnimacion_V2.1_jdk18.jar, miglayout-4.0.jar 
+
+#### Componente "Controlador"
+Gestiona la lógica de control que coordina la interacción entre la vista y los modelos. Ubicado dentro de la carpeta src, en la carpeta controladores. 
+
+- **Clases:** ControladorPrincipal, ControladorVentanaEquipos, ControladorVentanaInicio y ControladorVentanaPartidos. 
+
+#### Componente "Modelo"
+Contiene las entidades de negocio del sistema, definidas en las carpetas Modelos y ModelosDAO. 
+
+- **Clases:** Boleto, Equipo, Partido, DAO, DAOManager, etc. 
+
+#### Componente "Persistencia"
+Implementa la lógica de acceso a la base de datos, se encuentra en mysqlImplements y utiliza el mysql-connector-j-8.0.31.jar para interactuar con MySQL.
+
+- **Clases:** MySQLBoletoDAO, MySQLPartidoDAO, MySQLEquipoDAO, Conexion, etc. 
+
+#### Componente "Librerías"
+Conjunto de librerías externas que proveen funcionalidades adicionales necesarias para el sistema, como jcalendar, mysql-connector-j-8.0.31.jar, AbsoluteLayout-RELEASE150.jar, etc.
+
+### 3.2 Estructura de carpeta y archivos
+
+### 3.3 Herramientas y dependencias
+
+## 4. Vista de procesos
+
+### 4.1 Diagrama de secuencia
+
+## 5 Vista física
+
+### 5.1 Infraestructura
+
+### 5.2 Diagrama de despliegue
+
+### 5.3 Hardware y redes
+
+## 6 Vista de casos de uso
+
+### 6.1 Principales casos de usp
+
+### 6.2 Diagramas de casos de uso
+
+## 7. Vista de base de datos
+
+### 7.1 Diagrama entidad-relación (ER)
+
+![Diagrama entidad-relación](/Docs/Diagramas/Diagrama%20Entidad-Relación.svg)
